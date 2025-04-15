@@ -1,35 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Solar's Bot Control</title>
+  <meta charset="UTF-8" />
+  <title>SolarX Bot Control</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #1e1e2f;
-      color: #fff;
+      background-color: #0e0e0e;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
+      color: #ffffff;
       padding-top: 100px;
     }
+    h1 {
+      color: #9b59b6;
+      margin-bottom: 40px;
+    }
     button {
-      background: #8a2be2;
-      border: none;
+      background-color: #8a2be2;
       color: white;
+      border: none;
       padding: 15px 30px;
+      margin: 15px;
       font-size: 18px;
-      margin: 20px;
       cursor: pointer;
       border-radius: 10px;
+      transition: 0.3s ease;
     }
     button:hover {
-      background: #6b22b3;
+      background-color: #6d23b6;
+    }
+    .ping-url {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    .footer {
+      margin-top: 60px;
+      font-size: 12px;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <h1>Solar's Discord Bot Controller</h1>
-  <button onclick="alert('Bot is already online as long as this site is running.')">Bring Bot Online</button>
-  <button onclick="alert('To keep your bot online 24/7, use UptimeRobot to ping this website every 5 minutes.')">Keep Bot Online Forever</button>
-  <p>🔗 Ping URL: <code>https://your-repl-name.your-username.repl.co</code></p>
+  <h1>🌐 SolarX Discord Bot Control Panel</h1>
+
+  <button onclick="bringBotOnline()">🔄 Bring Bot Online</button>
+  <button onclick="howToKeepBotOnline()">♾️ Keep Bot Online Forever</button>
+
+  <p class="ping-url">
+    Ping Endpoint:<br>
+    <code>https://solar125515--solarx.repl.co/ping</code>
+  </p>
+
+  <div class="footer">
+    Made by Solar | Powered by Replit + Vercel
+  </div>
+
+  <script>
+    async function bringBotOnline() {
+      try {
+        const res = await fetch("https://solar125515--solarx.repl.co/ping");
+        if (res.ok) {
+          alert("✅ Bot pinged and should now be online!");
+        } else {
+          alert("❌ Failed to reach bot. Check if Replit is running.");
+        }
+      } catch (err) {
+        alert("⚠️ Error pinging the bot. Is Replit project awake?");
+        console.error(err);
+      }
+    }
+
+    function howToKeepBotOnline() {
+      alert(`To keep the bot online 24/7:
+1. Go to https://uptimerobot.com
+2. Create a free account.
+3. Add a new monitor (type: HTTP(s)).
+4. Use this URL:
+   https://solar125515--solarx.repl.co/ping
+5. Set check interval to every 5 minutes.
+
+✅ UptimeRobot will keep your Replit bot alive forever.`);
+    }
+  </script>
 </body>
 </html>
